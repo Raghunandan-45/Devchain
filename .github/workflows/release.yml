@@ -33,9 +33,9 @@ jobs:
     strategy:
       matrix:
         target: [
-          { os: "ubuntu-latest", triple: "x86_64-unknown-linux-gnu", name: "devchain-linux-amd64" },
-          { os: "windows-latest", triple: "x86_64-pc-windows-msvc", name: "devchain-windows-amd64.exe" },
-          { os: "macos-latest", triple: "x86_64-apple-darwin", name: "devchain-macos-amd64" }
+          { os: "ubuntu-latest", triple: "x86_64-unknown-linux-gnu", name: "devchain-linux-amd64", bin: "devchain_full" },
+          { os: "windows-latest", triple: "x86_64-pc-windows-msvc", name: "devchain-windows-amd64.exe", bin: "devchain_full.exe" },
+          { os: "macos-latest", triple: "x86_64-apple-darwin", name: "devchain-macos-amd64", bin: "devchain_full" }
         ]
     runs-on: ${{ matrix.target.os }} # Use the correct OS for each build
     steps:
@@ -58,7 +58,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
-          asset_path: ./target/${{ matrix.target.triple }}/release/${{ matrix.target.name }}
+          asset_path: ./target/${{ matrix.target.triple }}/release/${{ matrix.target.bin }} # <-- This path is now correct
           asset_name: ${{ matrix.target.name }}
           asset_content_type: application/octet-stream
 
