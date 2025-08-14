@@ -1,0 +1,89 @@
+{
+  "blockchain": {
+    "chain": [
+      {
+        "index": 0,
+        "timestamp": 1755179539,
+        "transactions": [],
+        "proof": {
+          "challenge_id": "genesis",
+          "language": "genesis",
+          "code": "genesis_proof",
+          "author": "system"
+        },
+        "previous_hash": "0",
+        "hash": "16d635642d84db334069c053be5711133b8995ee92b1d6544303d1aaded1d356"
+      },
+      {
+        "index": 1,
+        "timestamp": 1755179611,
+        "transactions": [
+          {
+            "sender": "0",
+            "recipient": "dev_polyglot_001",
+            "amount": 100.0
+          }
+        ],
+        "proof": {
+          "challenge_id": "fibonacci",
+          "language": "Cpp",
+          "code": "long long fib(int n) {\n    long long a = 0, b = 1;\n    for (int i = 0; i < n; ++i) {\n        long long temp = a;\n        a = b;\n        b = temp + b;\n    }\n    return a;\n}\n",
+          "author": "dev_polyglot_001"
+        },
+        "previous_hash": "16d635642d84db334069c053be5711133b8995ee92b1d6544303d1aaded1d356",
+        "hash": "7ab4cf4fb56ceff0b42dcb320e3326d4005a5f1aa47568efcc9d1b04c0d4f5b8"
+      },
+      {
+        "index": 2,
+        "timestamp": 1755179679,
+        "transactions": [
+          {
+            "sender": "0",
+            "recipient": "lone-_-",
+            "amount": 100.0
+          }
+        ],
+        "proof": {
+          "challenge_id": "webapp_raid",
+          "language": "WebApp (JS/Python)",
+          "code": "--FRONTEND--\ndocument.getElementById('btn').innerHTML = 'Hello, DevChain!';\n\n--BACKEND--\nreturn {'status':'ok'}\n",
+          "author": "lone-_-"
+        },
+        "previous_hash": "7ab4cf4fb56ceff0b42dcb320e3326d4005a5f1aa47568efcc9d1b04c0d4f5b8",
+        "hash": "e8d007b28f5a0a62bb047f2cca22d519f3b35448976033f6537918e8ae1b2394"
+      }
+    ],
+    "pending_transactions": []
+  },
+  "profiles": {
+    "dev_polyglot_001": {
+      "developer_id": "dev_polyglot_001",
+      "xp": 175,
+      "level": 4,
+      "xp_to_next_level": 337,
+      "skill_points": 3,
+      "skill_tree": {
+        "skills": {
+          "Rust": 0,
+          "Python": 0,
+          "JavaScript": 0
+        }
+      },
+      "badges": [],
+      "solved_languages": [
+        "Cpp",
+        "Raid"
+      ],
+      "guild_id": "lone-_-"
+    }
+  },
+  "guilds": {
+    "lone-_-": {
+      "id": "lone-_-",
+      "name": "Lone-_-",
+      "members": [
+        "dev_polyglot_001"
+      ]
+    }
+  }
+}
