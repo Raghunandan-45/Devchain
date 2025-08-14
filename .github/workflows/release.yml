@@ -2,6 +2,10 @@
 
 name: Create Release and Build Assets
 
+# This section grants the workflow the necessary permissions to create a release.
+permissions:
+  contents: write
+
 on:
   push:
     tags:
