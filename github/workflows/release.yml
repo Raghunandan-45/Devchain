@@ -1,0 +1,54 @@
+# .github/workflows/release.yml
+
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Run this workflow when a tag like v1.0, v1.1 is pushed
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [
+          { os: "ubuntu-latest", triple: "x86_64-unknown-linux-gnu", name: "devchain-linux-amd64" },
+          { os: "windows-latest", triple: "x86_64-pc-windows-msvc", name: "devchain-windows-amd64.exe" },
+          { os: "macos-latest", triple: "x86_64-apple-darwin", name: "devchain-macos-amd64" }
+        ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: ${{ matrix.target.triple }}
+          override: true
+
+      - name: Build binary
+        run: cargo build --release --target ${{ matrix.target.triple }}
+        
+      - name: Create Release
+        id: create_release
+        if: matrix.target.os == 'ubuntu-latest' # Only run this step once
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./target/${{ matrix.target.triple }}/release/${{ matrix.target.name }}
+          asset_name: ${{ matrix.target.name }}
+          asset_content_type: application/octet-stream
