@@ -35,7 +35,19 @@ This proof-of-concept includes:
 
 ## 🔧 Getting Started
 
-### Prerequisites
+### Option 1: Download the Latest Release (Recommended)
+
+The easiest way to get started is to download the pre-compiled application for your operating system.
+
+1.  **Go to the [Releases Page](https://github.com/Raghunandan-45/Devchain/releases).**
+2.  Under the latest release, find the correct file for your system (e.g., `devchain-windows-amd64.exe` for Windows).
+3.  Download the file, and run it from your terminal.
+
+### Option 2: Build from Source
+
+If you are a developer and want to build the project yourself, follow these steps.
+
+#### Prerequisites
 
 * **Rust:** Ensure you have the Rust toolchain installed. If not, get it from [rust-lang.org](https://www.rust-lang.org).
 * **WSL (for Windows users):** It is recommended to build and run the project inside the Windows Subsystem for Linux.
