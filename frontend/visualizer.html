@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevChain Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #e5e7eb;
+        }
+        .block {
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .block:hover {
+            transform: translateY(-4px);
+            filter: drop-shadow(0 5px 15px rgba(74, 222, 128, 0.4));
+        }
+        .tooltip {
+            position: absolute;
+            text-align: left;
+            padding: 12px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            background: #1f2937;
+            border: 1px solid #4b5563;
+            border-radius: 8px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            max-width: 350px;
+            word-wrap: break-word;
+        }
+        .hash-link {
+            stroke: #4ade80;
+            stroke-dasharray: 5, 5;
+            animation: dash 20s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 1000;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-white">DevChain <span class="text-green-400">Visualizer</span></h1>
+        <p class="text-gray-400 mt-2">An interactive view of the Proof-of-Skill blockchain.</p>
+    </div>
+
+    <div id="visualization" class="w-full max-w-7xl bg-gray-900/50 rounded-lg border border-gray-700 shadow-2xl shadow-green-500/10"></div>
+    
+    <div class="tooltip"></div>
+
+    <div class="mt-8">
+        <button id="add-block-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
+            Simulate Mining a New Block
+        </button>
+    </div>
+
+    <script src="visualizer.js"></script>
+</body>
+</html>
