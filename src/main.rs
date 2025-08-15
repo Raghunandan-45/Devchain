@@ -5,6 +5,7 @@ mod p2p;
 mod cli;
 mod vm;
 mod app_state; // <-- Added new module
+mod oracle;
 
 use crate::app_state::AppState; // <-- Corrected import
 use crate::p2p::P2PService;

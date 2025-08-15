@@ -1,5 +1,5 @@
 use serde::{Serialize, Deserialize};
-use crate::gamification::skills::{Skill, SkillTree};
+use crate::gamification::skills::{SkillTree};
 use crate::gamification::badges::{Badge};
 use std::collections::HashSet;
 

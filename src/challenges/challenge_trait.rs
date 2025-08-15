@@ -15,5 +15,6 @@ pub trait Challenge {
     fn description(&self) -> &str;
     fn languages(&self) -> Vec<&str>;
     fn get_solution_for(&self, lang: &str) -> Option<String>;
+    fn get_test_for(&self, lang: &str) -> Option<String>;
     fn reward_xp(&self) -> u32;
 }

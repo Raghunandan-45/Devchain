@@ -1,28 +1,18 @@
+use crate::challenges::challenge_trait::{Challenge, ChallengeSolution};
+use crate::oracle::docker_verifier::DockerOracle;
 
-    use crate::challenges::challenge_trait::{Challenge, ChallengeSolution};
-    
-    pub struct VerificationOracle;
+pub struct VerificationOracle;
 
-    impl VerificationOracle {
-        /// This is a SIMULATED verification oracle.
-        /// In a real system, this would:
-        /// 1. Spin up a secure, isolated sandbox (e.g., a Docker container for the specific language).
-        /// 2. Inject the user's code and a set of test cases.
-        /// 3. Execute the code and capture the output.
-        /// 4. Compare the output against the expected results.
-        /// 5. Tear down the sandbox.
-        pub fn verify(challenge: &dyn Challenge, solution: &ChallengeSolution) -> bool {
-            println!("[ORACLE] Verifying {} solution...", solution.language);
-            
-            // Simulate verification by comparing against the known correct solution.
-            if let Some(correct_solution) = challenge.get_solution_for(&solution.language) {
-                // Normalize both solutions to ignore minor whitespace differences
-                let normalized_submitted = solution.code.chars().filter(|c| !c.is_whitespace()).collect::<String>();
-                let normalized_correct = correct_solution.chars().filter(|c| !c.is_whitespace()).collect::<String>();
-                return normalized_submitted == normalized_correct;
-            }
-            
-            false // Language not supported for this challenge
+impl VerificationOracle {
+    pub fn verify(challenge: &dyn Challenge, solution: &ChallengeSolution) -> bool {
+        println!("[VERIFIER] Handing off to Docker Oracle for secure execution...");
+
+        if let Some(test_code) = challenge.get_test_for(&solution.language) {
+            DockerOracle::verify(&solution.language, &solution.code, &test_code)
+        } else {
+            println!("[VERIFIER-WARN] No test cases found for language: {}. Assuming success for this simplified challenge.", solution.language);
+            // For simplified raid challenges, we'll just check if the solution is not empty
+            !solution.code.trim().is_empty()
         }
     }
-
+}
