@@ -50,6 +50,7 @@ If you are a developer and want to build the project yourself, follow these step
 #### Prerequisites
 
 * **Rust:** Ensure you have the Rust toolchain installed. If not, get it from [rust-lang.org](https://www.rust-lang.org).
+* * **Docker Desktop:** Docker must be installed and running on your system. This is required for the Secure Verification Oracle. Get it from the [Docker website](https://www.docker.com/products/docker-desktop/).
 * **WSL (for Windows users):** It is recommended to build and run the project inside the Windows Subsystem for Linux.
 
 ### Installation & Running
@@ -144,6 +145,6 @@ The command-line interface is your portal to the DevChain network.
 This project is a proof-of-concept. The next steps to move toward a production system include:
 
 * **Real P2P Networking:** Replace the `p2p` placeholder with a full implementation using `libp2p`, including peer discovery, block gossiping, and state synchronization.
-* **Secure Verification Oracle:** Replace the simulated verifier with a true sandboxing solution (e.g., using Docker or gVisor) to safely execute untrusted code.
 * **Tokenomics:** Implement the DevCoin (DVC) with real wallet balances and transaction capabilities.
 * **Advanced Governance:** Build the on-chain governance system for proposing and voting on new challenges.
+* **Oracle Optimization:** Enhance the Docker Oracle for better performance and resource management.
